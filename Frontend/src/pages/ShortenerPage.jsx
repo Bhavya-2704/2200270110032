@@ -1,4 +1,4 @@
-// src/pages/ShortenerPage.jsx
+// pages/ShortenerPage.jsx
 import React, { useState } from 'react';
 import UrlInputForm from '../components/UrlInputForm';
 import ResultList from '../components/ResultList';
@@ -37,23 +37,34 @@ const ShortenerPage = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">🔗 URL Shortener</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
+        <h1 className="text-4xl font-extrabold text-center text-blue-800 mb-10">
+          🔗 URL Shortener
+        </h1>
 
-      {urls.map((entry, idx) => (
-        <UrlInputForm key={idx} idx={idx} entry={entry} handleChange={handleChange} />
-      ))}
+        {urls.map((entry, idx) => (
+          <UrlInputForm key={idx} idx={idx} entry={entry} handleChange={handleChange} />
+        ))}
 
-      <div className="flex space-x-2">
-        <button onClick={addField} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50" disabled={urls.length >= 5}>
-          + Add Another
-        </button>
-        <button onClick={handleSubmit} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-          Shorten
-        </button> 
+        <div className="flex space-x-4 justify-center mt-6">
+          <button
+            onClick={addField}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-full shadow-md transition disabled:opacity-40"
+            disabled={urls.length >= 5}
+          >
+            ➕ Add Another
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-full shadow-md transition"
+          >
+            🚀 Shorten URLs
+          </button>
+        </div>
+
+        <ResultList results={results} />
       </div>
-
-      <ResultList results={results} />
     </div>
   );
 };
